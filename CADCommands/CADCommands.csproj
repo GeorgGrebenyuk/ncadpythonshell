@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutDir>$(SolutionDir)bin\$(Configuration)_$(Platform)</OutDir>
@@ -7,6 +7,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <Configurations>Debug Nc22;Release Nc22;Debug Nc23;Release Nc23;Installer</Configurations>
     <Platforms>x64</Platforms>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
 
   </PropertyGroup>
   <Choose>
