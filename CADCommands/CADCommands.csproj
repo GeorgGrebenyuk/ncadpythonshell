@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(Platform)</OutDir>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Configurations>Debug Nc22;Release Nc22;Debug Nc23;Release Nc23;Installer</Configurations>
+    <Platforms>x64</Platforms>
+
+  </PropertyGroup>
+  <Choose>
+    <When Condition="$(Configuration.Contains('Nc23'))">
+      <PropertyGroup>
+        <TargetFramework>net6-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+        <GenerateDependencyFile>true</GenerateDependencyFile>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+      </PropertyGroup>
+      <ItemGroup>
+        <Reference Include="hostdbmgd">
+          <HintPath>..\ReferencedAssemblies\Nc23\hostdbmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="hostmgd">
+          <HintPath>..\ReferencedAssemblies\Nc23\hostmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('Nc22'))">
+      <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+      </PropertyGroup>
+      <ItemGroup>
+        <Reference Include="hostdbmgd">
+          <HintPath>..\ReferencedAssemblies\Nc22\hostdbmgd.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="hostmgd">
+          <HintPath>..\ReferencedAssemblies\Nc22\hostmgd.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+
+</Project>

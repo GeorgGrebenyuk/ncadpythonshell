@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(Platform)</OutDir>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug Nc22;Release Nc22;Debug Nc23;Release Nc23;Installer</Configurations>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+  <Choose>
+    <When Condition="$(Configuration.Contains('Nc23'))">
+      <PropertyGroup>
+        <TargetFramework>net6-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+        <GenerateDependencyFile>true</GenerateDependencyFile>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      <ItemGroup>
+        <!--<PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />-->
+        <Reference Include="hostdbmgd">
+          <HintPath>..\ReferencedAssemblies\Nc23\hostdbmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="hostmgd">
+          <HintPath>..\ReferencedAssemblies\Nc23\hostmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('Nc22'))">
+      <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+      </PropertyGroup>
+      <ItemGroup>
+        <Reference Include="hostdbmgd">
+          <HintPath>..\ReferencedAssemblies\Nc22\hostdbmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="hostmgd">
+          <HintPath>..\ReferencedAssemblies\Nc22\hostmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+	<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+			None
+		</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	</PropertyGroup>
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+	</PropertyGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\PythonScript16x16.png" />
+		<None Remove="Resources\IronPython.3.4.0.zip" />
+		<EmbeddedResource Include="Resources\IronPython.3.4.0.zip" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\PythonScript32x32.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\python_27_lib.zip" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="DynamicLanguageRuntime" Version="1.3.4" />
+		<PackageReference Include="IronPython" Version="3.4.1" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="ExternalCommandAssemblyBuilder.cs" />
+	</ItemGroup>
+</Project>

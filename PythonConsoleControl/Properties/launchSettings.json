@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PythonConsoleControl": {
+      "commandName": "Project"
+    },
+    "Debug Nc22": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Nanosoft\\nanoCAD x64 22.0\\nCad.exe",
+      "commandLineArgs": "-g \"C:\\Users\\Georg\\Documents\\GitHub\\ncadpythonshell\\CADPythonShell\\bin\\Debug Nc22\\CADPythonShell.dll\""
+    }
+  }
+}

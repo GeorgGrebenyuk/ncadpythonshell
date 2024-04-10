@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ApplicationPackage
+  xmlns="hostApplicationPackage/v01"
+  Name="NanoCAD PythonShell"
+>
+  <Components>
+    <ConfigEntry
+      FileName="NcPythonShell.cfg"
+      FileType="CFG"
+    />
+    <ComponentEntry
+      AppName="NanoCAD PythonShell"
+      ModuleName="CADCommands.dll"
+      ModuleType="MGD"
+    />
+    <ComponentEntry
+      AppName="NanoCAD PythonShell"
+      ModuleName="CADRuntime.dll"
+      ModuleType="MGD"
+    />
+    <ComponentEntry
+        AppName="NanoCAD PythonShell"
+        ModuleName="CADPythonShell.dll"
+        ModuleType="MGD"
+    />
+  </Components>
+</ApplicationPackage>

@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(Platform)</OutDir>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWPF>true</UseWPF>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Configurations>Debug Nc22;Release Nc22;Debug Nc23;Release Nc23;Installer</Configurations>
+    <Platforms>x64</Platforms>
+	</PropertyGroup>
+  <Choose>
+    <When Condition="$(Configuration.Contains('Nc23'))">
+      <PropertyGroup>
+        <TargetFramework>net6-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+        <GenerateDependencyFile>true</GenerateDependencyFile>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
+      </ItemGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('Nc22'))">
+      <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+      </PropertyGroup>
+    </When>
+  </Choose>
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+	</PropertyGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Python.xshd" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="PythonConsoleControl.OpenCover.Settings">
+	    <Generator>SettingsSingleFileGenerator</Generator>
+	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="AvalonEdit" Version="6.2.0.78" />
+	  <PackageReference Include="IronPython" Version="3.4.1" />
+	</ItemGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<StartAction>Project</StartAction>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug Nc23'">
+	  <StartAction>Project</StartAction>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<StartAction>Project</StartAction>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release Nc23'">
+	  <StartAction>Project</StartAction>
+	</PropertyGroup>
+</Project>

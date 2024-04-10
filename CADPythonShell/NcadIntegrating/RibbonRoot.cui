@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<RibbonRoot>
+  <RibbonPanelSourceCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <RibbonPanelSource UID="NcPS_PanelConsole_Group" Text="Cad Python Shell" HiddenInEditor="false">
+      <RibbonCommandButton UID="" Id="RibbonCommandButton" Text="Run NPS" ButtonStyle="LargeWithText" MenuMacroID="NPS_Run_NPS" KeyTip=""/>
+	  <RibbonCommandButton UID="" Id="RibbonCommandButton" Text="Configure NPS" ButtonStyle="LargeWithText" MenuMacroID="NPS_Configure_NPS" KeyTip=""/>
+	</RibbonPanelSource>
+  </RibbonPanelSourceCollection>
+  <RibbonTabSourceCollection>
+    <RibbonTabSource Text="nCAD Python Shell" UID="nCAD_PYS">
+      <RibbonPanelSourceReference UID="NcPS_PanelConsole" PanelId="NcPS_PanelConsole_Group" ResizeStyle="Default" />
+    </RibbonTabSource>
+  </RibbonTabSourceCollection>
+</RibbonRoot>

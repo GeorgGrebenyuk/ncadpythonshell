@@ -1,0 +1,246 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(Platform)</OutDir>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<LangVersion>latest</LangVersion>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<Configurations>Debug Nc22;Release Nc22;Debug Nc23;Release Nc23;Installer</Configurations>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    
+    <Platforms>x64</Platforms>
+    
+  </PropertyGroup>
+  <Choose>
+    <When Condition="$(Configuration.Contains('Nc23'))">
+      <PropertyGroup>
+        <TargetFramework>net6-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+        <GenerateDependencyFile>true</GenerateDependencyFile>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        
+      </PropertyGroup>
+      <ItemGroup>
+        <Reference Include="hostdbmgd">
+          <HintPath>..\ReferencedAssemblies\Nc23\hostdbmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="hostmgd">
+          <HintPath>..\ReferencedAssemblies\Nc23\hostmgd.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('Nc22'))">
+      <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+      </PropertyGroup>
+      <ItemGroup>
+        <Reference Include="hostdbmgd">
+          <HintPath>..\ReferencedAssemblies\Nc22\hostdbmgd.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="hostmgd">
+          <HintPath>..\ReferencedAssemblies\Nc22\hostmgd.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+	<!--<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+			None
+		</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	</PropertyGroup>-->
+	<PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Release'))">
+		<Optimize>true</Optimize>
+		<DebugType>none</DebugType>
+		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('A23'))">
+		<DefineConstants>$(DefineConstants);A23</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Images\New.png" />
+	  <None Remove="Images\SaveAs.png" />
+	  <None Remove="Resources\Console-16.png" />
+	  <None Remove="Resources\Console-32.png" />
+	  <None Remove="Resources\CreateWall.png" />
+	  <None Remove="Resources\Deployment-16.png" />
+	  <None Remove="Resources\Deployment-32.png" />
+	  <None Remove="Resources\Find-16.png" />
+	  <None Remove="Resources\Find-32.png" />
+	  <None Remove="Resources\ipy.ico" />
+	  <None Remove="Resources\py.ico" />
+	  <None Remove="Resources\pycon.ico" />
+	  <None Remove="Resources\Python-16.png" />
+	  <None Remove="Resources\Python-32.png" />
+	  <None Remove="Resources\Python.xshd" />
+	  <None Remove="Resources\PythonConsole16x16.png" />
+	  <None Remove="Resources\PythonConsole32x32.png" />
+	  <None Remove="Resources\PythonScript16x16.png" />
+	  <None Remove="Resources\PythonScript32x32.png" />
+	  <None Remove="Resources\Settings-16.png" />
+	  <None Remove="Resources\Settings-32.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Update="System.Core">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+		<Reference Update="System.Xml.Linq">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Resource Include="Images\New.png" />
+		<Resource Include="Images\Number.png" />
+		<Resource Include="Images\Paragraph.png" />
+		<Content Include="startup.py">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="init.py">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<None Update="Icons\Python-16.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Icons\Python-32.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Icons\Settings-16.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Icons\Settings-32.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="NcadIntegrating\NcPS.cuix">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="NcadIntegrating\NcPythonShell.cfg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="PackageContents.xml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="post_installation.ps1">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<Resource Include="Images\Copy.png" />
+		<Resource Include="Images\Cut.png" />
+		<Resource Include="Images\Delete.png" />
+		<Resource Include="Images\Open.png" />
+		<Resource Include="Images\Paste.png" />
+		<Resource Include="Images\Redo.png" />
+		<Resource Include="Images\Run.png" />
+		<Resource Include="Images\Save.png" />
+		<Resource Include="Images\SaveAs.png" />
+		<Resource Include="Images\Undo.png" />
+		<Resource Include="Images\WordWrap.png" />
+		<EmbeddedResource Include="Resources\Console-16.png" />
+		<EmbeddedResource Include="Resources\Console-32.png" />
+		<EmbeddedResource Include="Resources\CreateWall.png" />
+		<EmbeddedResource Include="Resources\Deployment-16.png" />
+		<EmbeddedResource Include="Resources\Deployment-32.png" />
+		<EmbeddedResource Include="Resources\Find-16.png" />
+		<EmbeddedResource Include="Resources\Find-32.png" />
+		<EmbeddedResource Include="Resources\ipy.ico" />
+		<EmbeddedResource Include="Resources\py.ico" />
+		<EmbeddedResource Include="Resources\pycon.ico" />
+		<EmbeddedResource Include="Resources\Python-16.png" />
+		<EmbeddedResource Include="Resources\Python-32.png" />
+		<EmbeddedResource Include="Resources\Python.xshd" />
+		<EmbeddedResource Include="Resources\PythonConsole16x16.png" />
+		<EmbeddedResource Include="Resources\PythonConsole32x32.png" />
+		<EmbeddedResource Include="Resources\PythonScript16x16.png" />
+		<EmbeddedResource Include="Resources\PythonScript32x32.png" />
+		<EmbeddedResource Include="Resources\Settings-16.png" />
+		<EmbeddedResource Include="Resources\Settings-32.png" />
+		<Content Include="CADPythonShell.xml">
+			<SubType>Designer</SubType>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<None Remove="Resources\database-16.png" />
+		<EmbeddedResource Include="Resources\database-16.png" />
+		<None Remove="Resources\database-32.png" />
+		<EmbeddedResource Include="Resources\database-32.png" />
+		<None Remove="Resources\editor-16.png" />
+		<EmbeddedResource Include="Resources\editor-16.png" />
+		<None Remove="Resources\editor-32.png" />
+		<EmbeddedResource Include="Resources\editor-32.png" />
+		<None Remove="Resources\test-16.png" />
+		<EmbeddedResource Include="Resources\test-16.png" />
+		<None Remove="Resources\test-32.png" />
+		<EmbeddedResource Include="Resources\test-32.png" />
+		<None Remove="Resources\events-16.png" />
+		<EmbeddedResource Include="Resources\events-16.png" />
+		<None Remove="Resources\events-32.png" />
+		<EmbeddedResource Include="Resources\events-32.png" />
+		<None Remove="Resources\handle-32.png" />
+		<EmbeddedResource Include="Resources\handle-32.png" />
+		<None Remove="Resources\handle-16.png" />
+		<EmbeddedResource Include="Resources\handle-16.png" />
+		<None Remove="Resources\snoopentities-16.png" />
+		<EmbeddedResource Include="Resources\snoopentities-16.png" />
+		<None Remove="Resources\snoopentities-32.png" />
+		<EmbeddedResource Include="Resources\snoopentities-32.png" />
+		<None Remove="Resources\snoopentitiesnes-16.png" />
+		<EmbeddedResource Include="Resources\snoopentitiesnes-16.png" />
+		<None Remove="Resources\snoopentitiesnes-32.png" />
+		<EmbeddedResource Include="Resources\snoopentitiesnes-32.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+			<Visible>False</Visible>
+			<ProductName>Windows Installer 3.1</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CADCommands\CADCommands.csproj" />
+		<ProjectReference Include="..\CADRuntime\CADRuntime.csproj" />
+    <!--<ProjectReference Include="..\MgdDbgLibrary\MgdDbg.csproj" />-->
+		<ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="IronPython" Version="3.4.1" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+	</ItemGroup>
+	<PropertyGroup />
+	<PropertyGroup>
+	  <PlatformTarget>x64</PlatformTarget>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<PropertyGroup>
+    <PostBuildEvent>
+      xcopy "$(SolutionDir)CADPythonShell\NcadIntegrating\NcPythonShell.cfg"				"$(SolutionDir)bin\$(Configuration)_$(Platform)\" /Y /I /E
+      xcopy "$(SolutionDir)CADPythonShell\NcadIntegrating\NcPS.cuix"								"$(SolutionDir)bin\$(Configuration)_$(Platform)\" /Y /I /E
+      xcopy "$(SolutionDir)CADPythonShell\NcadIntegrating\nCADPythonShell.package"	"$(SolutionDir)bin\$(Configuration)_$(Platform)\" /Y /I /E
+      xcopy "$(SolutionDir)CADPythonShell\Resources\*.bmp" "$(SolutionDir)bin\$(Configuration)_$(Platform)\Icons\" /Y /I /E
+      
+    </PostBuildEvent>
+	</PropertyGroup>
+</Project>

@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "Debug Nc22": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Nanosoft\\nanoCAD x64 22.0\\nCad.exe",
+      "commandLineArgs": "-g \"$(TargetDir)nCADPythonShell.package\""
+    },
+    "Debug Nc23.1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Nanosoft\\nanoCAD x64 23.1\\nCad.exe",
+      "commandLineArgs": "-g \"$(TargetDir)nCADPythonShell.package\""
+    },
+    "Debug Nc24.0": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Nanosoft\\nanoCAD x64 24.0\\nCad.exe",
+      "commandLineArgs": "-g \"$(TargetDir)nCADPythonShell.package\""
+    },
+    "Debug Nc24.1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Nanosoft\\nanoCAD x64 24.1\\nCad.exe",
+      "commandLineArgs": "-g \"$(TargetDir)nCADPythonShell.package\""
+    }
+  }
+}
