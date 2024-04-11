@@ -2,11 +2,19 @@
 using Teigha.DatabaseServices;
 using Teigha.Runtime;
 
+using CADCommandsNRX;
+
+using System;
+
 namespace CADCommands
 {
     public class AuxiliaryCommands : IExtensionApplication
     {
-
+        public static void InsertToDrawing (dynamic entity)
+        {
+            var native_data = entity.UnmanagedObject;
+            CADCommandsNRX.AuxiliaryTools.CreateObject(native_data);
+        }
         public static object OpenModeRead
         {
             

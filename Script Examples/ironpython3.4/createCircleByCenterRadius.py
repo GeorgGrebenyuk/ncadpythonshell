@@ -24,8 +24,7 @@ with doc.LockDocument():
 			btr  = t.GetObject(bt[BlockTableRecord.ModelSpace],AuxiliaryCommands.OpenModeWrite)
 			centerPt = Point3d(0,0,0)
 			radius = 50
-			circle = Circle(centerPt, Vector3d.ZAxis, radius)		
-			btr.AppendEntity(circle)
-			t.AddNewlyCreatedDBObject(circle,True)
+			circle = Circle(centerPt, Vector3d.ZAxis, radius)
+			AuxiliaryCommands.InsertToDrawing(circle)
 			t.Commit()
 			print("Circle Created")

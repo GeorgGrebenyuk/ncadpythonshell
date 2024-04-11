@@ -27,6 +27,7 @@ with doc.LockDocument():
 			pl.AddVertexAt(1,Point2d(100.0, 0.0), 0.0, 0.0, 0.0)
 			pl.AddVertexAt(2,Point2d(100.0, 100.0), 0.0, 0.0, 0.0)
 			pl.AddVertexAt(3,Point2d(0.0, 100.0), 0.0, 0.0, 0.0)
-			btr.AppendEntity(pl)
+			pl_as_ent = clr.Convert(pl, Entity)
+			btr.AppendEntity(pl_as_ent)
 			t.AddNewlyCreatedDBObject(pl,True)
 			t.Commit()

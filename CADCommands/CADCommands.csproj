@@ -50,4 +50,15 @@
     </When>
   </Choose>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CADCommands_NRX\CADCommands_NRX.vcxproj">
+      <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+
 </Project>

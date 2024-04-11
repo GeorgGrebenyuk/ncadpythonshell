@@ -365,6 +365,26 @@ namespace PythonConsoleControl
         }
 
         /// <summary>
+        /// Auxiliary method for .NET6 Microsoft.Scripting.Hosting.ScriptSource.ExecuteAndWrap analogue
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        private static ObjectHandle ExecuteAndWrap2(ScriptSource scope, out ObjectHandle exception)
+        {
+            exception = null;
+            try
+            {
+                return new ObjectHandle((object)scope.Execute());
+            }
+            catch (Exception e)
+            {
+                exception = new ObjectHandle(e);
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Run on the statement execution thread.
         /// </summary>
         private void ExecuteStatements()
@@ -390,16 +410,7 @@ namespace PythonConsoleControl
 #if DEBUG_NC22 || RELEASE_NC22
                         GetCommandDispatcher()(() => scriptSource.ExecuteAndWrap(commandLine.ScriptScope, out wrapexception));
 #elif DEBUG_NC23 || RELEASE_NC23
-                        //GetCommandDispatcher()(() => scriptSource.Execute(commandLine.ScriptScope));
-
-                        try
-                        {
-                            GetCommandDispatcher()(() => wrapexception = scriptSource.Execute(commandLine.ScriptScope));
-                        }
-                        catch (Exception e)
-                        {
-                            error = "Exception : " + e.ToString() + "\n";
-                        }
+                        GetCommandDispatcher()(() => ExecuteAndWrap2(scriptSource, out wrapexception));
 #endif
 
                         if (wrapexception != null)

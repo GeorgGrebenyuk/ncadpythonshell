@@ -10,6 +10,11 @@
       FileType="CFG"
     />
     <ComponentEntry
+        AppName="NanoCAD PythonShell"
+        ModuleName=" CADCommands_NRX.dll"
+        ModuleType="MGD"
+    />
+    <ComponentEntry
       AppName="NanoCAD PythonShell"
       ModuleName="CADCommands.dll"
       ModuleType="MGD"
@@ -24,5 +29,7 @@
         ModuleName="CADPythonShell.dll"
         ModuleType="MGD"
     />
+    
+   
   </Components>
 </ApplicationPackage>
