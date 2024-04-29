@@ -392,8 +392,11 @@ namespace PythonConsoleControl
             lock (scriptText)
             {
                 textEditor.Write("\r\n");
-                ScriptSource scriptSource = commandLine.ScriptScope.Engine.CreateScriptSourceFromString(scriptText, SourceCodeKind.Statements);
+
                 string error = "";
+
+                ScriptSource scriptSource = commandLine.ScriptScope.Engine.CreateScriptSourceFromString(scriptText, SourceCodeKind.Statements);
+                
                 try
                 {
                     executing = true;
@@ -407,11 +410,11 @@ namespace PythonConsoleControl
                     else
                     {
                         ObjectHandle wrapexception = null;
-#if DEBUG_NC22 || RELEASE_NC22
-                        GetCommandDispatcher()(() => scriptSource.ExecuteAndWrap(commandLine.ScriptScope, out wrapexception));
-#elif DEBUG_NC23 || RELEASE_NC23
+
+                        //GetCommandDispatcher()(() => scriptSource.ExecuteAndWrap(commandLine.ScriptScope, out wrapexception));
+
                         GetCommandDispatcher()(() => ExecuteAndWrap2(scriptSource, out wrapexception));
-#endif
+
 
                         if (wrapexception != null)
                         {
@@ -419,6 +422,16 @@ namespace PythonConsoleControl
                         }
                     }
                 }
+//#if DEBUG_NC22 || RELEASE_NC22
+//#elif DEBUG_NC23 || RELEASE_NC23
+//                var eng = IronPython.Hosting.Python.CreateEngine();
+//                var scope = eng.CreateScope();
+
+//                try
+//                {
+//                    eng.Execute(scriptText, scope);
+//                }
+//#endif
                 catch (ThreadAbortException tae)
                 {
                     if (tae.ExceptionState is Microsoft.Scripting.KeyboardInterruptException) Thread.ResetAbort();
@@ -439,6 +452,7 @@ namespace PythonConsoleControl
                 executing = false;
                 if (error != "") textEditor.Write(error);
                 textEditor.Write(prompt);
+
             }
         }
 

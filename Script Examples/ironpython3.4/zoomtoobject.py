@@ -3,14 +3,14 @@
 import clr
 clr.AddReference('hostmgd')
 clr.AddReference('hostdbmgd')
-clr.AddReference('CADCommands')
+
 # Import references from nanoCAD
 from Teigha.Runtime import *
 from HostMgd.ApplicationServices import *
 from HostMgd.EditorInput import *
 from Teigha.DatabaseServices import *
 from Teigha.Geometry import *
-from CADCommands import *
+
 
 doc = Application.DocumentManager.MdiActiveDocument
 ed = doc.Editor
@@ -30,7 +30,7 @@ if(result.Status==PromptStatus.OK):
 	with doc.LockDocument():
 		with doc.Database as db:
 			with db.TransactionManager.StartTransaction() as t:
-				ent = t.GetObject(result.ObjectId,AuxiliaryCommands.OpenModeRead)
+				ent = t.GetObject(result.ObjectId,OpenMode.ForRead)
 				ext = ent.GeometricExtents
 				# Do action here
 				ZoomToObj(ed, ext.MinPoint, ext.MaxPoint)

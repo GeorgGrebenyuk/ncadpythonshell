@@ -2,7 +2,7 @@
 import clr
 clr.AddReference('hostmgd')
 clr.AddReference('hostdbmgd')
-clr.AddReference('CADCommands')
+
 #clr.AddReference('ncBIMSmgd')
 # Import references from nanoCAD
 from Teigha.Runtime import *
@@ -10,7 +10,7 @@ from HostMgd.ApplicationServices import *
 from HostMgd.EditorInput import *
 from Teigha.DatabaseServices import *
 from Teigha.Geometry import *
-from CADCommands import *
+
 doc = Application.DocumentManager.MdiActiveDocument
 ed = doc.Editor
 db = doc.Database
@@ -19,13 +19,13 @@ all_blkName = []
 with doc.LockDocument():
 	with doc.Database as db:
 		with db.TransactionManager.StartTransaction() as t:
-			bt = t.GetObject(db.BlockTableId, AuxiliaryCommands.OpenModeRead)
-			btr  = t.GetObject(bt[BlockTableRecord.ModelSpace], AuxiliaryCommands.OpenModeRead)
+			bt = t.GetObject(db.BlockTableId, OpenMode.ForRead)
+			btr  = t.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForRead)
 			for objectid in btr:
-				blkRef = t.GetObject(objectid, AuxiliaryCommands.OpenModeRead)				
+				blkRef = t.GetObject(objectid, OpenMode.ForRead)				
 				if isinstance(blkRef, BlockReference):
 					if blkRef.IsDynamicBlock:
-						block = t.GetObject(blkRef.DynamicBlockTableRecord, AuxiliaryCommands.OpenModeRead)
+						block = t.GetObject(blkRef.DynamicBlockTableRecord, OpenMode.ForRead)
 						all_blkName.append(block.Name)
 					else:
 						all_blkName.append(blkRef.Name)	

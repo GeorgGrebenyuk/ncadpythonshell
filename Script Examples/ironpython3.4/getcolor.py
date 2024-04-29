@@ -1,14 +1,14 @@
 import clr
 clr.AddReference('hostmgd')
 clr.AddReference('hostdbmgd')
-clr.AddReference('CADCommands')
+
 # Import references from nanoCAD
 from Teigha.Runtime import *
 from HostMgd.ApplicationServices import *
 from HostMgd.EditorInput import *
 from Teigha.DatabaseServices import *
 from Teigha.Geometry import *
-from CADCommands import *
+
 
 adoc = Application.DocumentManager.MdiActiveDocument
 ed = adoc.Editor

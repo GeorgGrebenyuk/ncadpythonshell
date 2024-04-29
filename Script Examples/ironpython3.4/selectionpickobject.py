@@ -1,14 +1,14 @@
 import clr
 clr.AddReference('hostmgd')
 clr.AddReference('hostdbmgd')
-clr.AddReference('CADCommands')
+
 # Import references from nanoCAD
 from Teigha.Runtime import *
 from HostMgd.ApplicationServices import *
 from HostMgd.EditorInput import *
 from Teigha.DatabaseServices import *
 from Teigha.Geometry import *
-from CADCommands import *
+
 
 doc = Application.DocumentManager.MdiActiveDocument
 ed = doc.Editor
@@ -18,9 +18,9 @@ objects = []
 with doc.LockDocument():
 	with doc.Database as db:
 		with db.TransactionManager.StartTransaction() as t:
-			acblkbl = t.GetObject(db.BlockTableId,AuxiliaryCommands.OpenModeRead)
+			acblkbl = t.GetObject(db.BlockTableId,OpenMode.ForRead)
 			print(type(acblkbl))
-			acblktblrec = t.GetObject(acblkbl[BlockTableRecord.ModelSpace],AuxiliaryCommands.OpenModeWrite)
+			acblktblrec = t.GetObject(acblkbl[BlockTableRecord.ModelSpace],OpenMode.ForWrite)
 			print(type(acblktblrec))
 			sel = doc.Editor.GetSelection()
 			if(sel.Status== PromptStatus.OK):

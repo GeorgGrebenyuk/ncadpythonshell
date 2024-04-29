@@ -3,14 +3,14 @@
 import clr
 clr.AddReference('hostmgd')
 clr.AddReference('hostdbmgd')
-clr.AddReference('CADCommands')
+
 # Import references from nanoCAD
 from Teigha.Runtime import *
 from HostMgd.ApplicationServices import *
 from HostMgd.EditorInput import *
 from Teigha.DatabaseServices import *
 from Teigha.Geometry import *
-from CADCommands import *
+
 
 doc = Application.DocumentManager.MdiActiveDocument
 ed = doc.Editor
@@ -23,8 +23,8 @@ line1 = Line(p1,p2)
 with doc.LockDocument():
 	with doc.Database as db:
 		with db.TransactionManager.StartTransaction() as t:
-			bt = t.GetObject(db.BlockTableId,AuxiliaryCommands.OpenModeRead)
-			btr  = t.GetObject(bt[BlockTableRecord.ModelSpace],AuxiliaryCommands.OpenModeWrite)
+			bt = t.GetObject(db.BlockTableId,OpenMode.ForRead)
+			btr  = t.GetObject(bt[BlockTableRecord.ModelSpace],OpenMode.ForWrite)
 			btr.AppendEntity(line1)
 			t.AddNewlyCreatedDBObject(line1,True)
 			t.Commit()
